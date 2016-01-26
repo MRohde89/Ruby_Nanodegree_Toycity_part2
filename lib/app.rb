@@ -37,20 +37,27 @@ end
 
 def make_products_section
 # For each product in the data set:
+	# Print "Products" in ascii art
 	# Print the name of the toy
 	# Print the retail price of the toy
 	# Calculate and print the total number of purchases
 	# Calculate and print the total amount of sales
 	# Calculate and print the average price the toy sold for
 	# Calculate and print the average discount (% or $) based off the average sales price
+
+	puts "Products".force_encoding(Encoding::ASCII).colorize( :blue )
+	products = []
 	$products_hash['items'].each do |product|
-		puts product['title']
-		puts retail_price = product['full-price'].to_f
 		total_of_purchases, total_of_sales = data_from_purchases(product['purchases'])
-		puts total_of_purchases
-		puts total_of_sales
-		puts average_price = (total_of_sales/total_of_purchases).round(2)
-		puts average_discount = ((1-average_price/retail_price)*100).round(3)
+		products.push(  { brand: product['brand'],
+		title: product['title'],
+	  retail_price: retail_price = product['full-price'].to_f,
+		total_purchases: total_of_purchases,
+		total_sales: total_of_sales,
+	  ave_price: average_price = (total_of_sales/total_of_purchases).round(2),
+		ave_discount: ((1-average_price/retail_price)*100).round(3),
+		stock: product['stock']
+	})
 	end
 end
 
@@ -61,6 +68,7 @@ def data_from_purchases(purchases)
 	total_of_purchases = purchases.length
 	return  total_of_purchases, total_of_sales
 end
+
 
 
 setup_files
