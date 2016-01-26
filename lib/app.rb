@@ -45,23 +45,26 @@ def make_products_section
 	# Calculate and print the average discount (% or $) based off the average sales price
 	$products_hash['items'].each do |product|
 		puts product['title']
-		puts product['full-price']
+		puts retail_price = product['full-price'].to_f
 		total_of_purchases, total_of_sales = data_from_purchases(product['purchases'])
+		puts total_of_purchases
+		puts total_of_sales
+		puts average_price = (total_of_sales/total_of_purchases).round(2)
+		puts average_discount = ((1-average_price/retail_price)*100).round(3)
+	end
+end
 
 
 def data_from_purchases(purchases)
 	# get sum of prices for
 	total_of_sales = purchases.map { |hash| hash['price']}.reduce(:+)
 	total_of_purchases = purchases.length
-	return total_of_sales, total_of_purchases
+	return  total_of_purchases, total_of_sales
 end
 
 
-
-
-
-
-
+setup_files
+make_products_section
 
 
 
