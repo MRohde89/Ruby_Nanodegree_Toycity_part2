@@ -6,7 +6,6 @@ def setup_files
 	file = File.read(path)
 	$products_hash = JSON.parse(file)
 	$report_file = File.new("report.txt", "w+")
-	gather_data
 end
 
 def gather_data
@@ -21,28 +20,27 @@ def gather_data
 			brand_total_sales = 0
 			all_brand_products.each do |brand_product|
 						total_of_purchases, total_of_sales = data_from_purchases(brand_product['purchases'])
-						products.push(  { brand: brand_product['brand'],
-						title: brand_product['title'],
-					  retail_price: retail_price = brand_product['full-price'].to_f,
-						total_purchases: total_of_purchases,
-						total_sales: total_of_sales,
-					  ave_price: average_price = (total_of_sales/total_of_purchases).round(2),
-						ave_discount: ((1-average_price/retail_price)*100).round(3),
-						stock: brand_product['stock'] })
+						products.push({
+							brand: brand_product['brand'],
+							title: brand_product['title'],
+						  retail_price: retail_price = brand_product['full-price'].to_f,
+							total_purchases: total_of_purchases,
+							total_sales: total_of_sales,
+						  ave_price: average_price = (total_of_sales/total_of_purchases).round(2),
+							ave_discount: ((1-average_price/retail_price)*100).round(3),
+							stock: brand_product['stock'] })
 						### brand aggregations
 						brand_stocks += brand_product['stock']
 						brand_ave_price += average_price
 						brand_total_sales += total_of_sales
 			end
 			brands_hash.push({
-			brand: brands.round(2),
-			stock: brand_stocks.round(2),
-			ave_price: (brand_ave_price/all_brand_products.length).round(2),
-			sales: brand_total_sales.round(2)
+				brand: brands,
+				stock: brand_stocks.round(2),
+				ave_price: (brand_ave_price/all_brand_products.length).round(2),
+				sales: brand_total_sales.round(2)
 		})
 		end
-		#puts unique_brands = items.map { |product| product['brand'] }
-
 end
 
 def data_from_purchases(purchases)
@@ -55,7 +53,7 @@ end
 
 
 setup_files
-
+gather_data
 
 
 
