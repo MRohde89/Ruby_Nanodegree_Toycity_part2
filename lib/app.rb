@@ -1,4 +1,5 @@
 require 'json'
+require 'colorize' ## needs to be installed first in the command line sudo gem install colorize
 
 def setup_files
 	path = File.join(File.dirname(__FILE__), '../data/products.json')
@@ -7,13 +8,45 @@ def setup_files
 	$report_file = File.new("report.txt", "w+")
 end
 
+def start
+	#setup_files
+	#create_report
+end
+
+
+def create_report
+	#print_heading
+	#print_data
+end
+
+def print_heading
+	## print the heading
+end
+
+def print_data
+	## print the data
+	#make_products_section
+	#make_brands_section
+end
+
+
+
+
+
 
 
 # Print "Sales Report" in ascii art
 
+puts "Sales Report".force_encoding(Encoding::ASCII).colorize( :blue )
+
 # Print today's date
 
+puts Time.now.strftime("Printed on %m/%d/%Y")
+
 # Print "Products" in ascii art
+
+
+
 
 # For each product in the data set:
 	# Print the name of the toy
