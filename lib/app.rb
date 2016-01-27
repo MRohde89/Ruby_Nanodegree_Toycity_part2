@@ -11,16 +11,18 @@ end
 def gather_data
 		main_data = $products_hash['items'][0..$products_hash['items'].length]
 		unique_brands = main_data.map { |item| item['brand']}.uniq
-		brands_hash = []
+		brands_data_hash = []
+		products_data_hash = [] ## strangely the array must be defined on this level as well in order to be available after the loop
 		unique_brands.each do |brands|
 			all_brand_products = main_data.select { |product| product['brand'] == brands}
-			products = []
+			products_data_hash = []
 			brand_stocks = 0
 			brand_ave_price = 0
 			brand_total_sales = 0
 			all_brand_products.each do |brand_product|
 						total_of_purchases, total_of_sales = data_from_purchases(brand_product['purchases'])
-						products.push({
+						### creating products hash
+						products_data_hash.push({
 							brand: brand_product['brand'],
 							title: brand_product['title'],
 						  retail_price: retail_price = brand_product['full-price'].to_f,
@@ -34,13 +36,15 @@ def gather_data
 						brand_ave_price += average_price
 						brand_total_sales += total_of_sales
 			end
-			brands_hash.push({
+			### creating brand hash
+			brands_data_hash.push({
 				brand: brands,
 				stock: brand_stocks.round(2),
 				ave_price: (brand_ave_price/all_brand_products.length).round(2),
 				sales: brand_total_sales.round(2)
 		})
 		end
+		output_to_file(products_data_hash, brands_data_hash)
 end
 
 def data_from_purchases(purchases)
@@ -48,6 +52,12 @@ def data_from_purchases(purchases)
 	total_of_sales = purchases.map { |hash| hash['price']}.reduce(:+)
 	total_of_purchases = purchases.length
 	return  total_of_purchases, total_of_sales
+end
+
+
+def output_to_file (products_hash, brands_hash)
+	$report_file.write("Salary Report \n")
+	$report_file.write("Salary Report")
 end
 
 
