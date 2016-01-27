@@ -15,7 +15,7 @@ def gather_data
 		products_data_hash = [] ## strangely the array must be defined on this level as well in order to be available after the loop
 		unique_brands.each do |brands|
 			all_brand_products = main_data.select { |product| product['brand'] == brands}
-			products_data_hash = []
+			#products_data_hash = []
 			brand_stocks = 0
 			brand_ave_price = 0
 			brand_total_sales = 0
@@ -29,7 +29,7 @@ def gather_data
 							total_purchases: total_of_purchases,
 							total_sales: total_of_sales,
 						  ave_price: average_price = (total_of_sales/total_of_purchases).round(2),
-							ave_discount: ((1-average_price/retail_price)*100).round(3),
+							ave_discount: ((1-average_price/retail_price)*100).round(2),
 							stock: brand_product['stock'] })
 						### brand aggregations
 						brand_stocks += brand_product['stock']
@@ -43,6 +43,7 @@ def gather_data
 				ave_price: (brand_ave_price/all_brand_products.length).round(2),
 				sales: brand_total_sales.round(2)
 		})
+
 		end
 		output_to_file(products_data_hash, brands_data_hash)
 end
@@ -56,11 +57,48 @@ end
 
 
 def output_to_file (products_hash, brands_hash)
-	$report_file.write("Salary Report \n")
-	$report_file.write("Salary Report")
+	$report_file.puts("PRODUCTS".force_encoding(Encoding::ASCII))
+	products_section(products_hash)
+	end_of_section
+	$report_file.puts("BRANDS".force_encoding(Encoding::ASCII))
+	brands_section(brands_hash)
+	end_of_section
+	$report_file.puts 'THIS REPORT HAS BEEN CREATED BY MROHDE'
 end
 
+def products_section (products_hash)
+	#puts products_hash
+	index = 1
+	products_hash.each do |product|
+		$report_file.puts "-------TOY #{index}-------"
+		$report_file.puts "Name of Toy: #{ product[:title] }"
+		$report_file.puts "Retail Price: #{product[:retail_price]}"
+		$report_file.puts "Total \# of Purchases: #{product[:total_purchases]}"
+		$report_file.puts "Total amount of Sales: #{product[:total_sales]}"
+		$report_file.puts "Average Price: #{product[:ave_price]}"
+		$report_file.puts "Average Discount: #{product[:ave_discount]}"
+		$report_file.puts
+		index +=1
+	end
+end
 
+def brands_section (brands_hash)
+	index = 1
+	brands_hash.each do |brand|
+		$report_file.puts "-------BRAND #{index}-------"
+		$report_file.puts "Name of Brand: #{ brand[:brand] }"
+		$report_file.puts "\# in Stock: #{ brand[:stock] }"
+		$report_file.puts "Average Price #{ brand[:ave_price] }"
+		$report_file.puts "TOTAL SALES: #{ brand[:sales] }"
+		$report_file.puts
+		index +=1
+	end
+end
+
+def end_of_section
+	$report_file.puts("-------END OF SECTION-------")
+	$report_file.puts
+end
 
 setup_files
 gather_data
