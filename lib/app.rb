@@ -1,6 +1,6 @@
 require 'json'
 
-### retriving main data from the products file
+### THIS FUNCTION READS IN THE PRODUCTS FILE
 def setup_files
 	path = File.join(File.dirname(__FILE__), '../data/products.json')
 	file = File.read(path)
