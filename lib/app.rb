@@ -1,4 +1,5 @@
 require 'json'
+require 'artii' # enter in command line: sudo gem install artii
 
 ### THIS FUNCTION READS IN THE PRODUCTS FILE
 def setup_files
@@ -58,10 +59,11 @@ end
 
 ### THIS FUNCTION TAKES THE products_hash AND brands_hash AND GENERATES THE FINAL OUTPUT
 def output_to_file (products_hash, brands_hash)
-	$report_file.puts(_header("products"))
+	_sales_report_header
+	_products_header
 	products_section(products_hash)
 	end_of_section
-	$report_file.puts(_header("brands"))
+	_brands_header
 	brands_section(brands_hash)
 	end_of_section
 	$report_file.puts 'THIS REPORT HAS BEEN CREATED BY MROHDE'
@@ -104,17 +106,56 @@ def end_of_section
 	$report_file.puts
 end
 
-### THIS FUNCTION CONVERTS THE INPUT TO AN ASCII UPPERCASE HEADER
-def _header (header)
-	$report_file.puts(header.force_encoding(Encoding::ASCII).upcase)
+### THIS FUNCTION CREATES THE SALES REPORT HEADER
+def _sales_report_header
+	$report_file.puts "    _____       _            _____                       _ "
+	$report_file.puts "   / ____|     | |          |  __ \\                     | |"
+	$report_file.puts "  | (___   __ _| | ___ ___  | |__) |___ _ __   ___  _ __| |_ "
+	$report_file.puts "   \\___ \\ / _` | |/ _ \\ __| |  _  // _ \\ '_ \\ / _ \\| '__| __|"
+	$report_file.puts "   ____) | (_| | |  __\\__ \\ | | \\ \\  __/ |_) | (_) | |  | |_ "
+	$report_file.puts "  |_____/ \\__,_|_|\\___|___/ |_|  \\_\\___| .__/ \\___/|_|   \\__|"
+	$report_file.puts "                                       | |                   "
+	$report_file.puts "                                       |_|                   	"
+	$report_file.puts
+	$report_file.puts "--------------------------------------------------------------------"
+	$report_file.puts "--------------------------------------------------------------------"
+	$report_file.puts
 end
 
+def _products_header
+
+	$report_file.puts "                     _            _       "
+	$report_file.puts "                    | |          | |      "
+	$report_file.puts " _ __  _ __ ___   __| |_   _  ___| |_ ___ "
+	$report_file.puts "| '_ \\| '__/ _ \\ / _` | | | |/ __| __/ __|"
+	$report_file.puts "| |_) | | | (_) | (_| | |_| | (__| |_\\__ \\"
+	$report_file.puts "| .__/|_|  \\___/ \\__,_|\\__,_|\\___|\\__|___/"
+	$report_file.puts "| |                                       "
+	$report_file.puts "|_|                                       "
+	$report_file.puts
+	$report_file.puts "--------------------------------------------------------------------"
+	$report_file.puts
+end
+
+def _brands_header
+	$report_file.puts " _                         _     "
+	$report_file.puts "| |                       | |    "
+	$report_file.puts "| |__  _ __ __ _ _ __   __| |___ "
+	$report_file.puts "| '_ \\| '__/ _` | '_ \\ / _` / __|"
+	$report_file.puts "| |_) | | | (_| | | | | (_| \\__ \\"
+	$report_file.puts "|_.__/|_|  \\__,_|_| |_|\\__,_|___/"
+	$report_file.puts
+	$report_file.puts "--------------------------------------------------------------------"
+	$report_file.puts
+end
+
+
 ### START THE PROCESS
-def _start_process
+def start
 	setup_files # reading the file
 	products_data_hash,brands_data_hash = gather_data # manipulation of that dataset
 	output_to_file(products_data_hash,brands_data_hash) # output to file
 end
 
 ### TO START
-_start_process
+start
