@@ -1,0 +1,83 @@
+commit 4200c6d290ce522f0d30bad2231e588b198dc079
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 15:48:42 2016 +0100
+
+    Final Version: tidied up methods, replaced the word function with method in general, added additional hints and notes -> Version send to Udacity
+
+commit 4e4dd77ad2067a73784d2b02ea13e97fdd98602a
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 14:13:53 2016 +0100
+
+    implemented ascii header
+
+commit 98a454192ba9985724cd9698885054e3df3d9f9b
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 13:02:48 2016 +0100
+
+    Minor changes in the notes
+
+commit e82b5d7190e93c6be98c482cb233e249799da478
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 12:59:06 2016 +0100
+
+    Added Notes and Hints
+
+commit bee7b680bc5ca19348c73da546f3533bbca2e187
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 12:42:43 2016 +0100
+
+    First complete working Version
+
+commit 60500da9903cec32b3023f66512f4f35eadb2535
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Wed Jan 27 11:38:19 2016 +0100
+
+    fixed bugs -> Beginning with file output
+
+commit e1d74baa6811aef1aa649675272e4e302a1d3ff3
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 21:25:49 2016 +0100
+
+    first really working version
+
+commit b763c3b29ad094d05e22ab0279186ce8ef868c21
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 21:12:33 2016 +0100
+
+    adjusted code to now work with only on time parsing the dataset
+
+commit f76a57a4ee558a71eba832ef6317f54d3895ad96
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 19:03:09 2016 +0100
+
+    changed complete structure to not query duplicate information
+
+commit 98f89c867f4aece95f213aae7f753ff5bdf805ff
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 18:30:12 2016 +0100
+
+    products finished
+
+commit 52ff2552a257bd06f1e5ada1b7eefea6e6d8a5bd
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 18:18:49 2016 +0100
+
+    calculated the total_sales and total_purchases in an efficient manor
+
+commit 27c7c379a7491ecc6c1cb55b27c9f59ba4bc7153
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 16:52:22 2016 +0100
+
+    first-structure
+
+commit ec980775ef8e1d19b169624411aaac00eed127b1
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 15:02:30 2016 +0100
+
+    preparation suggestion from udacity
+
+commit d9ed391ce77a66a6cb9df034e133de38759173cf
+Author: MRohde89 <rheinsberg1@gmx.net>
+Date:   Tue Jan 26 14:52:11 2016 +0100
+
+    Initial commit
